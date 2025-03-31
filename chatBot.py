@@ -190,8 +190,10 @@ def answer(update: Update, context: CallbackContext) -> None:
 def find_question(update: Update, context: CallbackContext) -> None:
     logging.info(context.args)
     try:
-        question_type = context.args[0]  
-        number_of_questions = int(context.args[1])  
+        # question_type = context.args[0]  
+        # number_of_questions = int(context.args[1])  
+        question_type = " ".join(context.args[:-1])  
+        number_of_questions = int(context.args[-1])
         questions = list(question_collection.find({"type": {"$in": [question_type]}}))
         logging.info(questions)
         response = ""
